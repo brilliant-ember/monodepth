@@ -1,3 +1,26 @@
+# Python3 adaption
+This updates the original repo and makes it work with Python3, it fixes the tensorflow and keras imports to make them py3 compatible at the time of making this repo, there are warning in the run terminal that says that somethings will be not supported in the future so depending on when you use this repo you might need to update some imports, this worked at the time of writing this at April 7th 2021 with results screenshots posted below.
+
+1. install Requirements
+`pip3 install numpy tensorflow opencv-python rospkg`
+2. `catkin_make`
+3. `roslaunch monodepth my_launch.launch` 
+ *example of it running without any input topics*
+![](screenshots/2021-04-07-12-24-16.png)
+![](screenshots/2021-04-07-12-24-59.png)
+You can ignore the 'cu' errors as we don't have cuda gpus in my test machine, but we see that it is working without errors.
+
+*example of it working with webcam feed*
+I have added a remap in the launch file to map my usb camera to the monodepth node, you can edit that remap depending on your camera topic
+![](screenshots/2021-04-07-12-52-46.png)
+![](screenshots/2021-04-07-12-53-56.png)This pic is taken from rviz, it shows pointcloud2 data.
+![](screenshots/2021-04-07-12-55-14.png)Another angle
+
+Note, the performance was very slow, it would take more than 10 seconds to compute 1 depth image. Maybe this is because my computer doesn't have a graphics card and is running on the cpu only.
+
+---
+
+# Original repo Readme 
 ## Mono Depth ROS
  - ROS node used to estimated depth from monocular RGB data.
  - Should be used with Python 2.X and ROS
@@ -13,7 +36,7 @@
 - Topics published by the ROS node, containing depth and point cloud data generated.
   - /image/depth - Image message containing the depth image estimated (can be changed on the parameter topic_depth).
   - /pointcloud - Pointcloud2 message containing a estimated point cloud (can be changed on the parameter topic_pointcloud).
-- Parameters that can be configurated
+- Parameters that can be configuration
   - frame_id - TF Frame id to be published in the output messages.
   - debug - If set true a window with the output result if displayed.
   - min_depth, max_depth - Min and max depth values considered for scaling.

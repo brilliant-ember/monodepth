@@ -1,12 +1,14 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import time
 import numpy as np
 import cv2
 import rospkg
 import rospy
-import keras
-import tensorflow as tf
+import tensorflow.python.keras as keras
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 from sensor_msgs.msg import Image, PointCloud2, PointField
 from cv_bridge import CvBridge, CvBridgeError
